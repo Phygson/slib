@@ -2,8 +2,7 @@
 
 ## Requirements:
 - node-gyp
-> Remember to install also the node modules from the package.json file using\
-    **npm install**
+> Also, remember to install other necessary modules by running **npm install**
 
 ## Building: 
     node-gyp rebuild
