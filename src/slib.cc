@@ -1,4 +1,4 @@
-#include <napi.h>
+#include "napi.h"
 #include "internal.hpp"
 
 Napi::String chInSc(const Napi::CallbackInfo& info) {
@@ -7,11 +7,12 @@ Napi::String chInSc(const Napi::CallbackInfo& info) {
   auto tonic = info[0].ToString().Utf8Value();
   auto mode = info[1].ToString().Utf8Value();
   std::string o;
-  int t = 0;
+  Note t { tonic };
+  Note s { mode };
 
   
 
-  return Napi::String::New(env, tonic+mode + std::to_string(nnn(tonic)));
+  return Napi::String::New(env, std::to_string(t.interval(s)));
 }
 
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
