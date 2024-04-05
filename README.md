@@ -23,7 +23,7 @@
   - "Mixolyd" - Mixolydian,
   - "Aeo" - Aeolian (minor),
   - "Loc" - Locrian.
-- Returns the triad chords that can be built on the provided diatonic scale.
+- **Returns**: array, the triad chords that can be built on the provided diatonic scale.
 
 ## > notesInScale(tonic, mode)
 - **tonic**: string, latin note names with an optional alteration sign.
@@ -35,4 +35,4 @@
   - "Mixolyd" - Mixolydian,
   - "Aeo" - Aeolian (minor),
   - "Loc" - Locrian.
-- Returns the notes the provided diatonic scale constists of.
+- **Returns**: array, the notes the provided diatonic scale constists of.
