@@ -11,7 +11,7 @@ Napi::String ntInSc(const Napi::CallbackInfo& info) {
   auto qq = notesInScale(t, mode);
 
   std::string o;
-  for (auto& a : qq) o += a.get();
+  for (auto& a : qq) o += a.get() + " ";
 
   return Napi::String::New(env, o);
 }
@@ -24,9 +24,18 @@ Napi::String chInSc(const Napi::CallbackInfo& info) {
 
   Note t { tonic };
   auto qq = notesInScale(t, mode);
+  qq.push_back(qq[0]);
+  qq.push_back(qq[1]);
+  qq.push_back(qq[2]);
+  qq.push_back(qq[3]);
 
-  std::string o;
-  for (auto& a : qq) o += a.get();
+  std::string o = "";
+  for (int i = 0; i < 7; i++) {
+    o += qq[i].get();
+    if (qq[i].interval(qq[i+4]) == 6) { o += "dim"; o += " "; continue; }
+    if (qq[i].interval(qq[i+2])==3) o += "m";
+    o += " ";
+  };
 
   return Napi::String::New(env, o);
 }
