@@ -25,7 +25,7 @@ var slib = require("slib")
 # Documentation
 
 ## > chordsInScale(tonic, mode)
-- **tonic**: string, latin note names with an optional alteration sign.
+- **tonic**: string, latin note names with an optional alteration sign, e.g. "Ab" or "C#" or "F".
 - **mode**: string, one of the:
   - "Ion" - Ionian (major),
   - "Dor" - Dorian,
@@ -37,7 +37,7 @@ var slib = require("slib")
 - **Returns**: array, the triad chords that can be built on the provided diatonic scale.
 
 ## > notesInScale(tonic, mode)
-- **tonic**: string, latin note names with an optional alteration sign.
+- **tonic**: string, latin note names with an optional alteration sign, e.g. "Ab" or "C#" or "F".
 - **mode**: string, one of the:
   - "Ion" - Ionian (major),
   - "Dor" - Dorian,
