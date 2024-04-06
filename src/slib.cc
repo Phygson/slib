@@ -12,6 +12,7 @@ Napi::String ntInSc(const Napi::CallbackInfo& info) {
 
   std::string o;
   for (auto& a : qq) o += a.get() + " ";
+  o.pop_back();
 
   return Napi::String::New(env, o);
 }
@@ -36,6 +37,7 @@ Napi::String chInSc(const Napi::CallbackInfo& info) {
     if (qq[i].interval(qq[i+2])==3) o += "m";
     o += " ";
   };
+  o.pop_back();
 
   return Napi::String::New(env, o);
 }

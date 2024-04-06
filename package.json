@@ -1,15 +1,30 @@
 {
-  "name": "hello_world",
-  "version": "0.0.0",
-  "description": "Node.js Addons Example #1",
-  "main": "hello.js",
+  "name": "slib",
+  "version": "0.0.1",
+  "description": "- node-gyp\r > Remember to install also the node modules from the package.json file using\\\r     **npm install**",
+  "main": "index.js",
   "private": true,
   "dependencies": {
     "bindings": "~1.5.0",
-    "node-addon-api": "~8.0.0"
+    "node-addon-api": "~8.0.0",
+    "readline-sync": "^1.4.10"
   },
   "scripts": {
-    "test": "node hello.js"
+    "test": "node hello.js",
+    "install": "node-gyp rebuild"
   },
-  "gypfile": true
+  "gypfile": true,
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phygson/slib.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phygson/slib/issues"
+  },
+  "homepage": "https://github.com/phygson/slib#readme"
 }
