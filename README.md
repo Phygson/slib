@@ -52,3 +52,15 @@ var slib = require("slib")
   - "Aeo" - Aeolian (minor),
   - "Loc" - Locrian.
 - **Returns**: array of strings, the notes the provided diatonic scale constists of.
+
+## > getRomanScale(tonic, mode)
+- **tonic**: string, latin note names with an optional alteration sign, e.g. "Ab" or "C#" or "F".
+- **mode**: string, one of the:
+  - "Ion" - Ionian (major),
+  - "Dor" - Dorian,
+  - "Phy" - Phrygian,
+  - "Lyd" - Lydian,
+  - "Mixolyd" - Mixolydian,
+  - "Aeo" - Aeolian (minor),
+  - "Loc" - Locrian.
+- **Returns**: array of strings, the roman numerals as the are presented in the Fourths-Fifths circle, clockwise (<a href = "https://en.wikipedia.org/wiki/Roman_numerals">Wikipedia</a>).

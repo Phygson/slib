@@ -3,8 +3,6 @@
 #include <string>
 #include <vector>
 
-const std::string chromatic[13] {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C"};
-
 class Note {
 public:
     bool is_ok() { return _s != ""; };

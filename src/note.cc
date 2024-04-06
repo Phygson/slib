@@ -1,5 +1,6 @@
 #include "note.hpp"
 
+const std::string chromatic[13] {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C"};
 
 Note::Note(int n) {
     _i = (n + 48) % 12;
@@ -49,7 +50,7 @@ std::string Note::get() const
 
 Note Note::flattened() const
 {
-    std::string r[12] = { "", "Db", "", "Eb",
+    const std::string r[12] = { "", "Db", "", "Eb",
                    "Fb", "", "Gb", "",
                    "Ab", "", "Bb", "Cb" };
     return r[_i] == "" ? _s : r[_i];
@@ -57,7 +58,7 @@ Note Note::flattened() const
 
 Note Note::dflattened() const
 {
-    std::string r[12] = { "Dbb", "", "Ebb", "Fbb",
+    const std::string r[12] = { "Dbb", "", "Ebb", "Fbb",
                    "", "Gbb", "", "Abb",
                    "", "Bbb", "Cbb", "" };
     return r[_i] == "" ? _s : r[_i];
@@ -65,7 +66,7 @@ Note Note::dflattened() const
 
 Note Note::sharpened() const
 {
-    std::string r[12] = { "B#", "C#", "", "D#",
+    const std::string r[12] = { "B#", "C#", "", "D#",
                    "", "E#", "F#", "",
                    "G#", "", "A#", "" };
     return r[_i] == "" ? _s : r[_i];
@@ -73,7 +74,7 @@ Note Note::sharpened() const
 
 Note Note::dsharpened() const
 {
-   std::string r[12] = { "", "B##", "C##", "",
+   const std::string r[12] = { "", "B##", "C##", "",
                    "D##", "", "E##", "F##",
                    "", "G##", "", "A##" };
     return r[_i] == "" ? _s : r[_i];
@@ -88,6 +89,7 @@ Note Note::flat() const
         case 0: return t.flattened();
         case 1: return t;
         case 2: return t.sharpened();
+        default: return t;
     }
 }
 
@@ -105,6 +107,7 @@ Note Note::sharp() const
         case 0: return t.sharpened();
         case 1: return t.dsharpened();
         case 2: return t.dsharpened();
+        default: return t;
     }
 }
 
