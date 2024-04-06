@@ -7,8 +7,20 @@
 ## Building: 
     node-gyp rebuild
 
-## Running (temporary): 
-    node hello.js
+## Usage: 
+- Directly import
+```js
+var slib = require("./path/to/index.js")
+```
+- Import with npm
+```bash
+npm install ./path/to/module
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and then in your js file
+```js
+var slib = require("slib")
+```
 
 # Documentation
 
