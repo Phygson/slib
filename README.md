@@ -64,3 +64,4 @@ var slib = require("slib")
   - "Aeo" - Aeolian (minor),
   - "Loc" - Locrian.
 - **Returns**: array of strings, the roman numerals as the are presented in the Fourths-Fifths circle, clockwise (<a href = "https://en.wikipedia.org/wiki/Roman_numerals">Wikipedia</a>).
+- **Note:** the diminished chord is represented as minor + prefix "d", e.g. Bdim in C Ionian is "viid".
