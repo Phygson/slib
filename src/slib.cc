@@ -1,5 +1,7 @@
 #include "napi.h"
-#include "internal.hpp"
+#include <numeric>
+#include "note.hpp"
+#include "scales.hpp"
 
 Napi::String ntInSc(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
@@ -24,22 +26,16 @@ Napi::String chInSc(const Napi::CallbackInfo& info) {
   auto mode = info[1].ToString().Utf8Value();
 
   Note t { tonic };
-  auto qq = notesInScale(t, mode);
-  qq.push_back(qq[0]);
-  qq.push_back(qq[1]);
-  qq.push_back(qq[2]);
-  qq.push_back(qq[3]);
 
-  std::string o = "";
-  for (int i = 0; i < 7; i++) {
-    o += qq[i].get();
-    if (qq[i].interval(qq[i+4]) == 6) { o += "dim"; o += " "; continue; }
-    if (qq[i].interval(qq[i+2])==3) o += "m";
-    o += " ";
-  };
-  o.pop_back();
+  auto qq = chordsInScale(t, mode);
 
-  return Napi::String::New(env, o);
+  auto os = std::accumulate(std::begin(qq), std::end(qq), std::string(),
+                                [](std::string &ss, std::string &s)
+                                {
+                                    return ss.empty() ? s : ss + " " + s;
+                                });
+
+  return Napi::String::New(env, os);
 }
 
 Napi::Object Init(Napi::Env env, Napi::Object exports) {

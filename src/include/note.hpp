@@ -32,5 +32,3 @@ private:
     std::string _s = "";
     int state = 0;
 };
-
-std::vector<Note> notesInScale(const Note& tonic, const std::string& mode);
