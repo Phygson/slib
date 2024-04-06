@@ -10,7 +10,7 @@
     "readline-sync": "^1.4.10"
   },
   "scripts": {
-    "test": "node hello.js",
+    "test": "node test/test.js",
     "install": "node-gyp rebuild"
   },
   "gypfile": true,
