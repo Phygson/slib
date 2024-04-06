@@ -1,13 +1,15 @@
 # SLIB
-
+---
 ## Requirements:
 - node-gyp
 > Also, remember to install other necessary modules by running **npm install**
-
+---
 ## Building: 
     node-gyp rebuild
+---
+<details>
+<summary><h2>Usage:</h2></summary>
 
-## Usage: 
 - ### Directly import
 ```js
 var slib = require("./path/to/index.js")
@@ -21,6 +23,9 @@ npm install ./path/to/module
 ```js
 var slib = require("slib")
 ```
+</details>
+
+---
 
 # Documentation
 
