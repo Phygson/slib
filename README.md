@@ -8,11 +8,11 @@
     node-gyp rebuild
 
 ## Usage: 
-- Directly import
+- ### Directly import
 ```js
 var slib = require("./path/to/index.js")
 ```
-- Import with npm
+- ### Import with npm
 ```bash
 npm install ./path/to/module
 ```
