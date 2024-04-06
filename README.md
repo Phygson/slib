@@ -39,7 +39,7 @@ var slib = require("slib")
   - "Mixolyd" - Mixolydian,
   - "Aeo" - Aeolian (minor),
   - "Loc" - Locrian.
-- **Returns**: array, the triad chords that can be built on the provided diatonic scale.
+- **Returns**: array of strings, the triad chords that can be built on the provided diatonic scale.
 
 ## > notesInScale(tonic, mode)
 - **tonic**: string, latin note names with an optional alteration sign, e.g. "Ab" or "C#" or "F".
@@ -51,4 +51,4 @@ var slib = require("slib")
   - "Mixolyd" - Mixolydian,
   - "Aeo" - Aeolian (minor),
   - "Loc" - Locrian.
-- **Returns**: array, the notes the provided diatonic scale constists of.
+- **Returns**: array of strings, the notes the provided diatonic scale constists of.
