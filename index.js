@@ -16,6 +16,30 @@ function validatetm(tonic, mode) {
     mode = mode.charAt(0).toUpperCase() + mode.slice(1);
     mode = mode.charAt(0) + mode.slice(1).toLowerCase();
 
+    switch (mode) {
+        case "Ionian":
+            mode = "Ion";
+            break;
+        case "Dorian":
+            mode = "Dor";
+            break;
+        case "Phrygian":
+            mode = "Phy";
+            break;
+        case "Lydian":
+            mode = "Lyd";
+            break;
+        case "Mixolydian":
+            mode = "Mixolyd";
+            break;
+        case "Aeolian":
+            mode = "Aeo";
+            break;
+        case "Locrian":
+            mode = "Loc";
+            break;
+        }
+
     if (isTonic(tonic) == false) throw "Not a tonic";
     if (isMode(mode) == false) throw "Not a mode"; 
 
