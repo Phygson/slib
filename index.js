@@ -23,7 +23,8 @@ function validatetm(tonic, mode) {
 }
 
 module.exports.notesInScale = function (tonic, mode) {
-    return _slib.notesInScale(...validatetm(tonic, mode)).split(" "); 
+    var [a1, a2] = _slib.notesInScale(...validatetm(tonic, mode)).split("\n");
+    return [a1.split(" "), a2.split(" ")];
 }
 
 module.exports.chordsInScale = function (tonic, mode) {

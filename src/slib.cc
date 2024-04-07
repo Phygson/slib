@@ -5,6 +5,11 @@
 #include "ffc.hpp"
 #include "chshape.hpp"
 
+// FNV-1a hash, 32-bit 
+inline constexpr std::uint32_t fnv1a(const char* str, std::uint32_t hash = 2166136261UL) {
+    return *str ? fnv1a(str + 1, (hash ^ *str) * 16777619ULL) : hash;
+}
+
 Napi::String ntInSc(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
 
@@ -17,6 +22,16 @@ Napi::String ntInSc(const Napi::CallbackInfo& info) {
   std::string o;
   for (auto& a : qq) o += a.get() + " ";
   o.pop_back();
+  o += "\n";
+  switch (fnv1a(mode.data())) {
+        case fnv1a("Lyd"): o += "1 2 3 #4 5 6 7";  break;
+        case fnv1a("Ion"): o += "1 2 3 4 5 6 7"; break;
+        case fnv1a("Mixolyd"): o +=  "1 2 3 4 5 6 b7";  break;
+        case fnv1a("Dor"): o += "1 2 b3 4 5 6 b7"; break;
+        case fnv1a("Aeo"): o += "1 2 b3 4 5 b6 b7";  break;
+        case fnv1a("Phy"): o += "1 b2 b3 4 5 b6 b7"; break;
+        case fnv1a("Loc"): o += "1 b2 b3 4 b5 b6 b7";  break;
+    }
 
   return Napi::String::New(env, o);
 }

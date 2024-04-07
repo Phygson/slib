@@ -4,4 +4,4 @@ var readlineSync = require('readline-sync');
 var tonic = readlineSync.question('Tonic: ');
 var mode = readlineSync.question('Mode: ');
 
-console.log("The notes of " + tonic + " " + mode + ": " + slib.notesInScale(tonic, mode));
+console.log(slib.notesInScale(tonic, mode));
