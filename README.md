@@ -51,7 +51,7 @@ var slib = require("slib")
   - "Mixolyd" - Mixolydian,
   - "Aeo" - Aeolian (minor),
   - "Loc" - Locrian.
-- **Returns**: array of strings, the notes the provided diatonic scale constists of.
+- **Returns**: array of 2 arrays of strings, the first array is the notes the diatonic scale consists of, and the second array is the degrees of the notes in relation to the Ionian scale.
 
 ## > getRomanScale(tonic, mode)
 - **tonic**: string, latin note names with an optional alteration sign, e.g. "Ab" or "C#" or "F".
