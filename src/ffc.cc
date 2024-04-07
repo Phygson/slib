@@ -36,12 +36,7 @@ std::vector<std::string> getRomanScale(const Note &tonic, const std::string &mod
     auto r = std::vector<std::string>(7);
 
     auto ss = scaleSteps(modeToOffset(mode));
-    auto sc = chordsInScale(tonic, mode);
-    auto sn = notesInScale(tonic, mode);
     for (int i = 0; i < 7; i++) {
-        // if (sc[ss[i]-1].length() - sn[ss[i]-1].get().length() == 0) r[i] = romanmaj[ss[i]-1];
-        // else if (sc[ss[i]-1].length() - sn[ss[i]-1].get().length() == 1) r[i] = romanmin[ss[i]-1];
-        // else r[i] = romanmin[ss[i]-1] + "d";
         if (i < 3) r[i] = romanmaj[ss[i]-1];
         else if (i > 2 && i < 6) r[i] = romanmin[ss[i]-1];
         else r[i] = romanmin[ss[i]-1] + "d";
