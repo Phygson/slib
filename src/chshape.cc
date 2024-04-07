@@ -28,16 +28,28 @@ std::string impl(std::vector<Note>& notes) {
 
     auto res = std::string();
     for (int tt = 0; tt < frets - width + 1; tt++) {
+gtend:
         res += "Frets " + std::to_string(tt) + " to " + std::to_string(tt+width-1) + ": ";
         std::vector<std::vector<std::pair<int, int>>> filt(6);
+        std::string mtst = "x";
+        int sw = 0;
         for (int i = 0; i < pp.size(); i++) {
-            bool metBass = false;
+            std::vector<int> nna;
             for (int j = 0; j < pp[i].size(); j++) {
                 if (pp[i][j].second == 0 || (pp[i][j].second >= tt && pp[i][j].second < tt+width)) {
                     filt[i].push_back(pp[i][j]);
                 }
             }
+            if (filt[i].empty()) {
+                if (mtst.back() == '+') sw++;
+                mtst += "x";
+            }
+            if (!filt[i].empty()) {
+                if (mtst.back() == 'x') sw++;
+                mtst += "+";
+            }
         }
+        if (sw > 2) { res += "\n"; tt++; goto gtend; }
 
         {
             bool dmetB = true;
@@ -54,7 +66,18 @@ std::string impl(std::vector<Note>& notes) {
             }
         }
 
+        for (auto a : qq) {
+            int cc = 0;
+            for (auto& b : filt) {
+                for (auto& c : b) {
+                    if (c.first == a) cc += 1;
+                }
+            }
+            if (cc == 0) { res += "\n"; tt++; goto gtend; }
+        }
+
         for (auto& a : filt) {
+            if (a.empty()) res += "X";
             for (auto& b : a) {
                 if (b.first == -1) { res += "X"; break; }
                 else {
@@ -73,5 +96,5 @@ std::string impl(std::vector<Note>& notes) {
 
 std::string getChordShape(const std::string &name)
 {
-    return impl(std::vector<Note>({Note("B"), Note("E"), Note("F#")}));
+    return impl(std::vector<Note>({Note("C"), Note("E"), Note("G"), Note("Bb")}));
 }
