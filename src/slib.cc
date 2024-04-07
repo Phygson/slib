@@ -3,6 +3,7 @@
 #include "note.hpp"
 #include "scales.hpp"
 #include "ffc.hpp"
+#include "chshape.hpp"
 
 Napi::String ntInSc(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
@@ -58,6 +59,12 @@ Napi::String grs(const Napi::CallbackInfo& info) {
   return Napi::String::New(env, os);
 }
 
+Napi::String chshape(const Napi::CallbackInfo& info) {
+  Napi::Env env = info.Env();
+
+  return Napi::String::New(env, getChordShape(info[0].ToString().Utf8Value()));
+}
+
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
   exports.Set(Napi::String::New(env, "notesInScale"),
               Napi::Function::New(env, ntInSc));
@@ -65,6 +72,8 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
               Napi::Function::New(env, chInSc));
   exports.Set(Napi::String::New(env, "getRomanScale"),
               Napi::Function::New(env, grs));
+  exports.Set(Napi::String::New(env, "getChordShape"),
+              Napi::Function::New(env, chshape));
   return exports;
 }
 

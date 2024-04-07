@@ -33,3 +33,5 @@ module.exports.chordsInScale = function (tonic, mode) {
 module.exports.getRomanScale = function (tonic, mode) {
     return _slib.getRomanScale(...validatetm(tonic, mode)).split(" "); 
 }
+
+module.exports.getChordShape = _slib.getChordShape;
