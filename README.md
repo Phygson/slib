@@ -67,7 +67,7 @@ var slib = require("slib")
 
 <details>
 <summary>Example:</summary>
-circleOfFifths("C", "Dorian") returns 
+circleOfFifths("A", "Dorian") returns 
 
 ```
 [
@@ -77,15 +77,16 @@ circleOfFifths("C", "Dorian") returns
     'v',   'ii',
     'vi°'
   ],
-
   [
-    'Eb', 'Bb', 'F',  'C',
-    'G',  'D',  'A',  'E',
-    'B',  'F#', 'Db', 'Ab'
+    'C',  'G',  'D',  'A',
+    'E',  'B',  'F#', 'Db',
+    'Ab', 'Eb', 'Bb', 'F'
   ]
 ]
 ```
 
-So the top segment of the circle of fiths should be "Eb" with "III", and further go clockwise.
+So the top segment of the circle of fiths should be "C" with "III", and further go clockwise.
+
+![alt text](examples/ffc.png)
 
 </details>
