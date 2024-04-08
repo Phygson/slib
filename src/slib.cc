@@ -63,9 +63,15 @@ Napi::String grs(const Napi::CallbackInfo& info) {
 
   Note t { tonic };
 
-  auto qq = getRomanScale(t, mode);
+  auto qq = ffc(t, mode);
 
-  auto os = std::accumulate(std::begin(qq), std::end(qq), std::string(),
+  auto os = std::accumulate(std::begin(qq), std::begin(qq) + 7, std::string(),
+                                [](std::string &ss, std::string &s)
+                                {
+                                    return ss.empty() ? s : ss + " " + s;
+                                });
+  os += "\n";
+  os += std::accumulate(std::begin(qq)+7, std::end(qq), std::string(),
                                 [](std::string &ss, std::string &s)
                                 {
                                     return ss.empty() ? s : ss + " " + s;
@@ -85,7 +91,7 @@ Napi::Object Init(Napi::Env env, Napi::Object exports) {
               Napi::Function::New(env, ntInSc));
   exports.Set(Napi::String::New(env, "chordsInScale"),
               Napi::Function::New(env, chInSc));
-  exports.Set(Napi::String::New(env, "getRomanScale"),
+  exports.Set(Napi::String::New(env, "circleOfFifths"),
               Napi::Function::New(env, grs));
   exports.Set(Napi::String::New(env, "getChordShape"),
               Napi::Function::New(env, chshape));

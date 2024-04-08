@@ -55,8 +55,10 @@ module.exports.chordsInScale = function (tonic, mode) {
     return _slib.chordsInScale(...validatetm(tonic, mode)).split(" "); 
 }
 
-module.exports.getRomanScale = function (tonic, mode) {
-    return _slib.getRomanScale(...validatetm(tonic, mode)).split(" "); 
+module.exports.circleOfFifths = function (tonic, mode) {
+    var [a1, a2] = _slib.circleOfFifths(...validatetm(tonic, mode)).split("\n");
+    a1 = a1.replace("d", "°") 
+    return [a1.split(" "), a2.split(" ")];
 }
 
 module.exports.getChordShape = _slib.getChordShape;

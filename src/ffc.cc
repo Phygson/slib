@@ -8,6 +8,7 @@ inline constexpr std::uint32_t fnv1a(const char* str, std::uint32_t hash = 21661
 
 const std::string romanmaj[7] = {"I", "II", "III", "IV", "V", "VI", "VII"};
 const std::string romanmin[7] = {"i", "ii", "iii", "iv", "v", "vi", "vii"};
+const std::vector<std::string> ffnotes = {"C", "G", "D", "A", "E", "B", "F#", "Db", "Ab", "Eb", "Bb", "F"};
 
 int modeToOffset(const std::string& mode) {
     switch (fnv1a(mode.data())) {
@@ -31,7 +32,7 @@ std::vector<int> scaleSteps(int offset) {
     return t;
 }
 
-std::vector<std::string> getRomanScale(const Note &tonic, const std::string &mode)
+std::vector<std::string> ffc(const Note &tonic, const std::string &mode)
 {
     auto r = std::vector<std::string>(7);
 
@@ -41,5 +42,11 @@ std::vector<std::string> getRomanScale(const Note &tonic, const std::string &mod
         else if (i > 2 && i < 6) r[i] = romanmin[ss[i]-1];
         else r[i] = romanmin[ss[i]-1] + "d";
     }
+
+    int findex_t = std::find(ffnotes.begin(), ffnotes.end(), tonic.get()) - ffnotes.begin();
+    int findex_m = std::find(ss.begin(), ss.end(), 1) - ss.begin();
+    for (int i = (findex_t + 12 - findex_m) % 12; i <  12; i++) r.push_back(ffnotes[i]);
+    for (int i = 0; i < (findex_t + 12 - findex_m) % 12; i++) r.push_back(ffnotes[i]);
+
     return r;
 }

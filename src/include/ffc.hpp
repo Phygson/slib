@@ -1,4 +1,4 @@
 #pragma once
 #include "note.hpp"
 
-std::vector<std::string> getRomanScale(const Note& tonic, const std::string& mode);
+std::vector<std::string> ffc(const Note& tonic, const std::string& mode);

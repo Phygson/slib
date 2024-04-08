@@ -4,4 +4,4 @@ var readlineSync = require('readline-sync');
 var tonic = readlineSync.question('Tonic: ');
 var mode = readlineSync.question('Mode: ');
 
-console.log(slib.getRomanScale(tonic, mode));
+console.log(slib.circleOfFifths(tonic, mode));
