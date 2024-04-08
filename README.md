@@ -66,7 +66,7 @@ var slib = require("slib")
 - **Returns**: array of 2 arrays of strings, the first array is the roman numerals as the are presented in the Fourths-Fifths circle, clockwise (<a href = "https://en.wikipedia.org/wiki/Roman_numerals">Wikipedia</a>), and the second array is the notes that should be shown, first seven of them correspond to the roman numerals in the first array, clockwise.
 
 <details>
-<summary>Example:</summary>
+<summary><b>Example:</b></summary>
 circleOfFifths("A", "Dorian") returns 
 
 ```
