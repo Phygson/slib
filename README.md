@@ -90,3 +90,13 @@ So the top segment of the circle of fiths should be "C" with "III", and further 
 ![alt text](examples/ffc.png)
 
 </details>
+
+## > getChordShape(name)
+- **name**: TODO
+- **Returns**: array of arrays of 6 strings, variants of chord positions. Each variant is what frets should be pressed, from the sixth to the first string, '0' is an open string, 'x' is a muted string, e.g. for Am(A, C, E)
+```
+[ 
+  [ '5', '7', '7', '5', '5', '5' ], 
+  [ 'x', '0', '2', '2', '1', '0' ] 
+]
+```
