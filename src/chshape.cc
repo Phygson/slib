@@ -7,6 +7,7 @@
 
 constexpr int frets = 13;
 constexpr int width = 4;
+constexpr int returnFirstN = 3;
 
 const std::vector<std::vector<int>> grf = { {4, 5, 6, 7, 8, 9, 10, 11, 0, 1, 2, 3, 4}, 
                                             {11, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11},
@@ -89,8 +90,8 @@ void getAllCombinations(const std::vector<int>& notes, const std::vector<std::ve
     }
 }
 
-std::string impl(std::vector<Note>& notes) {
-    if (notes.size() > 6) return "idk";
+std::vector<std::vector<std::pair<int, int>>> impl(std::vector<Note>& notes) {
+    if (notes.size() > 6) return {};
     std::vector<int> qq;
     qq.reserve(notes.size());
     for (auto& u : notes) qq.push_back(u.getnum());
@@ -101,7 +102,6 @@ std::string impl(std::vector<Note>& notes) {
         }
     }
 
-    auto res = std::string();
     std::vector<std::vector<std::pair<int, int>>> sk;
     for (int tt = 0; tt < frets - width + 1; tt++) {
         std::vector<std::vector<std::pair<int, int>>> filt(6);
@@ -133,24 +133,32 @@ std::string impl(std::vector<Note>& notes) {
     }
     std::sort(sk.begin(), sk.end(), [](const std::vector<std::pair<int, int>> &a, const std::vector<std::pair<int, int>> &b)
     { 
-    return countMuted(a) < countMuted(b); 
+        if (countMuted(a) < countMuted(b)) {
+            return true;
+        } else if (countMuted(a) == countMuted(b)) {
+            return countZeroed(a) > countZeroed(b);
+        } else {
+            return false;
+        }
     });
     sk.erase( unique( sk.begin(), sk.end() ), sk.end() );
 
-    for (auto& a : sk) {
-            for (auto& b : a) {
-                if (b.first == -1) { res += "X ";}
-                else {
-                    res += std::to_string(b.second) + " "; 
-                }
-            }
-            res += "\n";
-        }
+    decltype(sk) ret = {sk.begin(), sk.begin()+returnFirstN};
 
-    return res;
+    return ret;
 }
 
 std::string getChordShape(const std::string &name)
 {
-    return impl(std::vector<Note>({Note("G"), Note("A#"), Note("D")}));
+    std::string res = "";
+    auto tt = impl(std::vector<Note>({Note("A"), Note("B"), Note("E"), Note("F#")}));
+    for (auto& a : tt) {
+        for (auto&b : a) {
+            res += std::to_string(b.second) + " ";
+        }
+        res.pop_back();
+        res += "\n";
+    }
+    res.pop_back();
+    return res;
 }
