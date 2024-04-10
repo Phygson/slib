@@ -92,7 +92,6 @@ So the top segment of the circle of fiths should be "C" with "III", and further 
 </details>
 
 ## > getChordShape(arr)
-- ## NOT READY
 - **arr**: array of 5 strings:
     - tonic
     - "min", "maj", "sus2", "sus4", "-"
