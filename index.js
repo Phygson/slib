@@ -61,8 +61,8 @@ module.exports.circleOfFifths = function (tonic, mode) {
     return [a1.split(" "), a2.split(" ")];
 }
 
-module.exports.getChordShape = function (name) {
-    var t = _slib.getChordShape(name).split("\n");
+module.exports.getChordShape = function (arr) {
+    var t = _slib.getChordShape(arr.join(" ")).split("\n");
     var t2 = t.map(function(v,i,a){
         return v.split(" ").reverse();
      });

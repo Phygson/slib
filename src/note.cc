@@ -120,3 +120,8 @@ int Note::interval(Note to) const
 {
     return (to.getnum() - _i + 12) % 12;
 }
+
+Note Note::add(int interval) const
+{
+    return Note(_i + interval);
+}

@@ -25,6 +25,7 @@ public:
     Note dsharp() const;
 
     int interval(Note to) const;
+    Note add(int interval) const;
 private:
     int _i = 0;
     std::string _s = "";

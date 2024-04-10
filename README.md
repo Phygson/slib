@@ -91,9 +91,14 @@ So the top segment of the circle of fiths should be "C" with "III", and further 
 
 </details>
 
-## > getChordShape(name)
+## > getChordShape(arr)
 - ## NOT READY
-- **name**: TODO
+- **arr**: array of 5 strings:
+    - tonic
+    - "min", "maj", "sus2", "sus4", "-"
+    - "#5", "b5", "5", "-"
+    - "add2", "add4", "6", "-"
+    - "M7", "m7", "d7", "m9", "-"
 - **Returns**: array of arrays of 6 strings, variants of chord positions. Each variant is what frets should be pressed, from the sixth to the first string, '0' is an open string, 'x' is a muted string, e.g. for Am(A, C, E)
 ```
 [ 

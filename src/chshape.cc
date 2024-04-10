@@ -4,11 +4,15 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-#include <set>
 
 constexpr int frets = 8;
 constexpr int width = 4;
 constexpr int returnFirstN = 1;
+
+// FNV-1a hash, 32-bit 
+inline constexpr std::uint32_t fnv1a(const char* str, std::uint32_t hash = 2166136261UL) {
+    return *str ? fnv1a(str + 1, (hash ^ *str) * 16777619ULL) : hash;
+}
 
 const std::vector<std::vector<int>> grf = { {4, 5, 6, 7, 8, 9, 10, 11, 0, 1, 2, 3, 4}, 
                                             {11, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11},
@@ -180,10 +184,58 @@ std::vector<std::vector<int>> impl(std::vector<Note>& notes) {
     return ret;
 }
 
+std::vector<Note> notesinchord(const std::string& str) {
+    std::vector<std::string> v;
+    int start, end;
+    start = end = 0;
+
+    while ((start = str.find_first_not_of(' ', end))
+           != std::string::npos) {
+        end = str.find(' ', start);
+        v.push_back(str.substr(start, end - start));
+    }
+
+    std::vector<Note> ret;
+    ret.push_back(Note(v[0]));
+
+    switch(fnv1a(v[1].data())) {
+        case fnv1a("maj"): ret.push_back(ret[0].add(4)); break;
+        case fnv1a("min"): ret.push_back(ret[0].add(3)); break;
+        case fnv1a("sus2"): ret.push_back(ret[0].add(2)); break;
+        case fnv1a("sus4"): ret.push_back(ret[0].add(5)); break;
+        default: break;
+    }
+
+    switch(fnv1a(v[2].data())) {
+        case fnv1a("#5"): ret.push_back(ret[0].add(8)); break;
+        case fnv1a("b5"): ret.push_back(ret[0].add(6)); break;
+        case fnv1a("5"): ret.push_back(ret[0].add(7)); break;
+        default: break;
+    }
+
+    switch(fnv1a(v[3].data())) {
+        case fnv1a("add2"): if(fnv1a(v[1].data()) != fnv1a("sus2")) ret.push_back(ret[0].add(2)); break;
+        case fnv1a("add4"): if(fnv1a(v[1].data()) != fnv1a("sus4")) ret.push_back(ret[0].add(5)); break;
+        case fnv1a("6"): ret.push_back(ret[0].add(9)); break;
+        default: break;
+    }
+
+    switch(fnv1a(v[4].data())) {
+        case fnv1a("M7"): ret.push_back(ret[0].add(11)); break;
+        case fnv1a("m7"): ret.push_back(ret[0].add(10)); break;
+        case fnv1a("d7"): if(fnv1a(v[3].data()) != fnv1a("6")) ret.push_back(ret[0].add(9)); break;
+        case fnv1a("m9"): ret.push_back(ret[0].add(10)); ret.push_back(ret[0].add(1)); break;
+        default: break;
+    }
+
+    return ret;
+}
+
 std::string getChordShape(const std::string &name)
 {
     std::string res = "";
-    auto tt = impl(std::vector<Note>({Note("C"), Note("E"), Note("G"), Note("Bb")}));
+    
+    auto tt = impl(notesinchord(name));
     for (auto& a : tt) {
         for (auto&b : a) {
             res += (b != -1 ? std::to_string(b) + " " : "x ");
