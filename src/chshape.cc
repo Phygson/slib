@@ -235,7 +235,8 @@ std::string getChordShape(const std::string &name)
 {
     std::string res = "";
     
-    auto tt = impl(notesinchord(name));
+    auto nic = notesinchord(name);
+    auto tt = impl(nic);
     for (auto& a : tt) {
         for (auto&b : a) {
             res += (b != -1 ? std::to_string(b) + " " : "x ");
