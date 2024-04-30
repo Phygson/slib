@@ -96,7 +96,7 @@ void getAllCombinations(const std::vector<int>& notes, const std::vector<std::ve
 }
 
 std::vector<std::vector<int>> impl(std::vector<Note>& notes) {
-    if (notes.size() > 6) return {};
+    if (notes.size() > 6 or notes.size() < 2) return {};
     std::vector<int> qq;
     qq.reserve(notes.size());
     for (auto& u : notes) qq.push_back(u.getnum());
@@ -237,6 +237,7 @@ std::string getChordShape(const std::string &name)
     
     auto nic = notesinchord(name);
     auto tt = impl(nic);
+    if (tt.empty()) return "x x x x x x";
     for (auto& a : tt) {
         for (auto&b : a) {
             res += (b != -1 ? std::to_string(b) + " " : "x ");
