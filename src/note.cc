@@ -1,5 +1,5 @@
 #include "note.hpp"
-
+#include <cstdint>
 const std::string chromatic[13] {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B", "C"};
 
 Note::Note(int n) {

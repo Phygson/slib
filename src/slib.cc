@@ -4,7 +4,7 @@
 #include "scales.hpp"
 #include "ffc.hpp"
 #include "chshape.hpp"
-
+#include <cstdint>
 // FNV-1a hash, 32-bit 
 inline constexpr std::uint32_t fnv1a(const char* str, std::uint32_t hash = 2166136261UL) {
     return *str ? fnv1a(str + 1, (hash ^ *str) * 16777619ULL) : hash;

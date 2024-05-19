@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <cstdint>
 
 constexpr int frets = 8;
 constexpr int width = 4;
