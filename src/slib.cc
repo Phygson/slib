@@ -47,7 +47,7 @@ Napi::String chInSc(const Napi::CallbackInfo& info) {
   auto qq = chordsInScale(t, mode);
 
   auto os = std::accumulate(std::begin(qq), std::end(qq), std::string(),
-                                [](std::string &ss, std::string &s)
+                                [](const std::string &ss, const std::string &s)
                                 {
                                     return ss.empty() ? s : ss + " " + s;
                                 });
@@ -66,13 +66,13 @@ Napi::String grs(const Napi::CallbackInfo& info) {
   auto qq = ffc(t, mode);
 
   auto os = std::accumulate(std::begin(qq), std::begin(qq) + 7, std::string(),
-                                [](std::string &ss, std::string &s)
+                                [](const std::string &ss, const std::string &s)
                                 {
                                     return ss.empty() ? s : ss + " " + s;
                                 });
   os += "\n";
   os += std::accumulate(std::begin(qq)+7, std::end(qq), std::string(),
-                                [](std::string &ss, std::string &s)
+                                [](const std::string &ss, const std::string &s)
                                 {
                                     return ss.empty() ? s : ss + " " + s;
                                 });
